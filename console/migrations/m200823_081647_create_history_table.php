@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `{{%history}}`.
  */
-class m200820_081647_create_history_table extends Migration
+class m200823_081647_create_history_table extends Migration
 {
     /**
      * {@inheritdoc}
@@ -14,28 +14,28 @@ class m200820_081647_create_history_table extends Migration
     {
         $this->createTable('{{%history}}', [
             'id' => $this->primaryKey(),
-            'book_id' => $this->integer()->notNull(),
+            'exemplar_id' => $this->integer()->notNull(),
             'student_id' => $this->integer()->notNull(),
             'date_taken' => $this->date()->notNull(),
             'date_returned' => $this->date()
         ]);
 
-        Yii::$app->db->createCommand()->batchInsert('{{%history}}', ['book_id','student_id','date_taken','date_returned'], [
-            ['1','1','2020-08-20',''],
-            ['3','3','2020-08-21',''],
+        Yii::$app->db->createCommand()->batchInsert('{{%history}}', ['exemplar_id','student_id','date_taken','date_returned'], [
+            ['3','1','2020-08-20',''],
+            ['10','3','2020-08-21',''],
         ])->execute();
 
         $this->createIndex(
-            'idx-history-book_id',
+            'idx-history-exemplar_id',
             'history',
-            'book_id'
+            'exemplar_id'
         );
 
         $this->addForeignKey(
-            'fk-history-book_id',
+            'fk-history-exemplar_id',
             'history',
-            'book_id',
-            'book',
+            'exemplar_id',
+            'exemplar',
             'id',
             'NO ACTION'
         );
@@ -73,12 +73,12 @@ class m200820_081647_create_history_table extends Migration
         );
 
         $this->dropForeignKey(
-            'fk-history-book_id',
+            'fk-history-exemplar_id',
             'history'
         );
 
         $this->dropIndex(
-            'idx-history-book_id',
+            'idx-history-exemplar_id',
             'history'
         );
 

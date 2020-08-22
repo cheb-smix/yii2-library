@@ -21,6 +21,6 @@ class Bookcase extends ActiveRecord
 	}
 	public function getShelfes()
 	{
-		return $this->hasMany(Shelf::className(), ['bookcase_id' => 'id'])->with("books");
+		return $this->hasMany(Shelf::className(), ['bookcase_id' => 'id'])->with("exemplars");
 	}
 }

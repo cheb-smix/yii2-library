@@ -4,7 +4,7 @@ namespace app\models;
 use Yii;
 use yii\db\ActiveRecord;
 
-class Book extends ActiveRecord
+class Exemplar extends ActiveRecord
 {
 	/*public function attributeLabels()
 	{
@@ -24,13 +24,13 @@ class Book extends ActiveRecord
 			[ ['title'], 'string', 'length'=>[5,100], 'message'=>'Wrong' ],
 			[ ['author_id','shelf_id'], 'number', 'min'=>1, 'message'=>'Выберите автора' ],
 		];
-	}*/
-	public function getAuthor()
+    }*/
+	public function getBook()
 	{
-		return $this->hasOne(Author::className(), ['id' => 'author_id']);
-	}
-	public function getExemplars()
+		return $this->hasOne(Book::className(), ['id' => 'book_id'])->with("author");
+    }
+    public function getShelf()
 	{
-		return $this->hasMany(Exemplar::className(), ['book_id' => 'id'])->getShelf();
+		return $this->hasOne(Shelf::className(), ['id' => 'shelf_id']);
 	}
 }

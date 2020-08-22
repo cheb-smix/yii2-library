@@ -15,17 +15,15 @@ class m200820_075205_create_book_table extends Migration
         $this->createTable('{{%book}}', [
             'id' => $this->primaryKey(),
             'title' => $this->string(200)->notNull(),
-            'author_id' => $this->integer()->notNull(),
             'releasedate' => $this->date(),
-            'count' => $this->integer()->notNull(),
-            'shelf_id' => $this->integer(),
+            'author_id' => $this->integer()->notNull(),
             'img' => $this->string(200)
         ]);
 
-        Yii::$app->db->createCommand()->batchInsert('{{%book}}', ['title','author_id','releasedate','count','shelf_id','img'], [
-            ['Повелители мечей','1','1971-01-01','5','1','images/book1.jpg'],
-            ['Элрик из Мелнибонэ','1','1978-08-08','3','2','images/book2.jpg'],
-            ['Ведьмак: «Последнее желание»','1','1996-04-15','8','6','images/book3.jpg'],
+        Yii::$app->db->createCommand()->batchInsert('{{%book}}', ['title','author_id','releasedate','img'], [
+            ['Повелители мечей','1','1971-01-01','images/book1.jpg'],
+            ['Элрик из Мелнибонэ','1','1978-08-08','images/book2.jpg'],
+            ['Ведьмак: «Последнее желание»','2','1996-04-15','images/book3.jpg'],
         ])->execute();
 
         $this->createIndex(
@@ -42,21 +40,6 @@ class m200820_075205_create_book_table extends Migration
             'id',
             'RESTRICT'
         );
-
-        $this->createIndex(
-            'idx-book-shelf_id',
-            'book',
-            'shelf_id'
-        );
-
-        $this->addForeignKey(
-            'fk-book-shelf_id',
-            'book',
-            'shelf_id',
-            'shelf',
-            'id',
-            'SET NULL'
-        );
     }
 
     /**
@@ -71,16 +54,6 @@ class m200820_075205_create_book_table extends Migration
 
         $this->dropIndex(
             'idx-book-author_id',
-            'book'
-        );
-
-        $this->dropForeignKey(
-            'fk-book-shelf_id',
-            'book'
-        );
-
-        $this->dropIndex(
-            'idx-book-shelf_id',
             'book'
         );
 

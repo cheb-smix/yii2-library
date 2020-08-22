@@ -7,7 +7,7 @@ use Yii\db\ActiveRecord;
 class Bookcase extends ActiveRecord{
 	public function attributeLabels(){
 		return [
-            'book_id'=>'Книга',
+            'exemplar_id'=>'Экземпляр книги',
             'student_id'=>'Студент',
             'date_taken'=>'Дата выдачи',
             'date_returned'=>'Дата возврата'
@@ -20,8 +20,8 @@ class Bookcase extends ActiveRecord{
 	{
 		return $this->hasOne(Student::className(), ['id' => 'student_id']);
 	}
-	public function getBook()
+	public function getExemplar()
 	{
-		return $this->hasOne(Book::className(), ['id' => 'book_id']);
+		return $this->hasOne(Exemplar::className(), ['id' => 'exemplar_id'])->getBook();
 	}
 }

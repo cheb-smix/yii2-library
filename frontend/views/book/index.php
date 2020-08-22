@@ -1,6 +1,6 @@
 <?php
 
-$this->title = 'Библиотека';
+$this->title = $book["title"];
 
 ?>
 <div class="container">

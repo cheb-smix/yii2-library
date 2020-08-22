@@ -4,7 +4,8 @@ namespace app\models;
 use Yii;
 use yii\db\ActiveRecord;
 
-class Students extends ActiveRecord{
+class Students extends ActiveRecord
+{
 	public function attributeLabels()
 	{
 		return [
@@ -20,7 +21,7 @@ class Students extends ActiveRecord{
 	}
 	public function getHistory()
 	{
-		return $this->hasMany(History::className(), ['student_id' => 'id']);
+		return $this->hasMany(History::className(), ['student_id' => 'id'])->getExemplar();
 	}
 }
 
