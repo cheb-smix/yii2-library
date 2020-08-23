@@ -45,6 +45,7 @@ class BookController extends Controller
             $bookform->img = $book["img"];
         }
         
+        
         return $this->render('edit', compact(['bookform','authors','shelfes']));
     }
 
