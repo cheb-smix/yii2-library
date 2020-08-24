@@ -24,7 +24,10 @@ class History extends ActiveRecord{
 		];
 	}
 	public function rules(){
-		return [];
+		return [
+			[ ['exemplar_id','student_id','date_taken'], 'required' ],
+            [ ['student_id'], 'number', 'min'=>1, 'message'=>'Выберите студента' ],
+		];
 	}
 	public function getStudent()
 	{
@@ -32,6 +35,6 @@ class History extends ActiveRecord{
 	}
 	public function getExemplar()
 	{
-		return $this->hasOne(Exemplar::className(), ['id' => 'exemplar_id'])->getBook();
+		return $this->hasOne(Exemplar::className(), ['id' => 'exemplar_id'])->with("book");
 	}
 }

@@ -3,6 +3,8 @@
 $this->title = $book["title"];
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\jui\DatePicker;
+
 
 if(!$book["img"]) $book["img"] = "images/default_book.png";
 
@@ -32,7 +34,7 @@ $this->registerJs( $script );
 <div class="col-md-9">
     <?php $form = ActiveForm::begin() ?>
         <?= $form->field($book, 'title') ?>
-        <?= $form->field($book, 'releasedate') ?>
+        <?= $form->field($book, 'releasedate')->widget(DatePicker::classname(), [ 'dateFormat' => 'yyyy-MM-dd', 'language' => 'ru']) ?>
         <?= $form->field($book, 'author_id')->dropDownList($authors,[
             'prompt' => 'Укажите автора'
         ]); ?>

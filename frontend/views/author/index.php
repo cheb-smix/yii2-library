@@ -23,7 +23,7 @@ $this->title = $author["name"];
                 $onhand = 0;
                 foreach($book["exemplars"] as $ex) if($ex["onhand"]) $onhand++;
                 ?>
-                <tr><td><?php echo $book["title"]; ?></td><td><?php echo count($book["exemplars"]); ?></td><td><?php echo $onhand; ?></td></tr>
+                <tr><td><a href="?r=book&id=<?php echo $book["id"]; ?>"><?php echo $book["title"]; ?></a></td><td><?php echo count($book["exemplars"]); ?></td><td><?php echo $onhand; ?></td></tr>
             <?php } ?>
             </table>
         </div>

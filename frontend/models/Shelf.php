@@ -35,7 +35,7 @@ class Shelf extends ActiveRecord
 	}
 	public function getExemplars()
 	{
-		return $this->hasMany(Exemplar::className(), ['shelf_id' => 'id'])->with("book");
+		return $this->hasMany(Exemplar::className(), ['shelf_id' => 'id'])->with("book","onhand");
 	}
 }
 

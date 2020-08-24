@@ -14,7 +14,8 @@ class m200820_060943_create_student_table extends Migration
     {
         $this->createTable('{{%student}}', [
             'id' => $this->primaryKey(),
-            'fio' => $this->string(200)->notNull()
+            'fio' => $this->string(200)->notNull(),
+            'img' => $this->string(200)->defaultValue('images/default_user.png')
         ]);
         Yii::$app->db->createCommand()->batchInsert('{{%student}}', ['fio'], [
             ['Иванов Иван'],

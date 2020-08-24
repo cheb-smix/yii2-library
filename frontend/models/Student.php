@@ -5,18 +5,20 @@ use Yii;
 use yii\db\ActiveRecord;
 
 /**
- * History model
+ * Student model
  *
  * @property integer $id
  * @property string $fio
+ * @property string $img
  */
 
-class Students extends ActiveRecord
+class Student extends ActiveRecord
 {
 	public function attributeLabels()
 	{
 		return [
 			'fio'=>'ФИО студента',
+			'img'=>'Фотография',
 		];
 	}
 	public function rules()
@@ -28,7 +30,7 @@ class Students extends ActiveRecord
 	}
 	public function getHistory()
 	{
-		return $this->hasMany(History::className(), ['student_id' => 'id'])->getExemplar();
+		return $this->hasMany(History::className(), ['student_id' => 'id'])->with("exemplar");
 	}
 }
 

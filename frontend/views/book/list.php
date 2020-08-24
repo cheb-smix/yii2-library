@@ -33,9 +33,13 @@ $colspan = 5;
                             <td><?php echo $exemplar["book"]["author"]["name"]; ?></td>
                             <td><?php echo $exemplar["book"]["releasedate"]; ?></td>
                             <td>
-                                <button class="btn give btn-success" title="Выдача"><i class="fa fa-reply"></i></button>
-                                <button class="btn view btn-info" title="Просмотр"><i class="fa fa-eye"></i></button>
-                                <button class="btn edit btn-primary" title="Правка"><i class="fa fa-pencil"></i></button>
+                            <?php if(!$exemplar["onhand"]){ ?>
+                                <a href="?r=history/add&exemplar_id=<?php echo $exemplar["id"]; ?>" title="Выдача" class="btn view btn-success"><i class="fa fa-reply"></i></a>
+                            <?php }else{ ?>
+                                <a href="?r=history/add&exemplar_id=<?php echo $exemplar["id"]; ?>" title="Экземпляр на руках" class="btn view btn-success" disabled><i class="fa fa-reply"></i></a>
+                            <?php } ?>
+                                <a href="?r=book&id=<?php echo $exemplar["book"]["id"]; ?>" title="Просмотр" class="btn view btn-info"><i class="fa fa-eye"></i></a>
+                                <a href="?r=book/edit&id=<?php echo $exemplar["book"]["id"]; ?>" title="Правка" class="btn edit btn-primary"><i class="fa fa-pencil"></i></a>
                             </td>
                         </tr>
                     <?php } ?>
@@ -47,15 +51,3 @@ $colspan = 5;
         </div>
     </div>
 </div>
-<?php
-$js = <<< JS
-$(document).delegate(".edit","click",function(){
-    location.href = '?r=book/edit&id='+$(this).closest("tr").attr("data-id");
-}).delegate(".view","click",function(){
-    location.href = '?r=book&id='+$(this).closest("tr").attr("data-id");
-}).delegate(".give","click",function(){
-    alert($(this).closest("tr").attr("data-id"));
-});
-JS;
-$this->registerJs( $js );
-?>
