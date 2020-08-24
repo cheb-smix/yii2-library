@@ -40,6 +40,6 @@ class Book extends ActiveRecord
 	}
 	public function getExemplars()
 	{
-		return $this->hasMany(Exemplar::className(), ['book_id' => 'id'])->with("shelf");
+		return $this->hasMany(Exemplar::className(), ['book_id' => 'id'])->with("shelf","onhand");
 	}
 }

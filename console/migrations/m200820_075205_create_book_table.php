@@ -17,7 +17,7 @@ class m200820_075205_create_book_table extends Migration
             'title' => $this->string(200)->notNull(),
             'releasedate' => $this->date(),
             'author_id' => $this->integer()->notNull(),
-            'img' => $this->string(200)
+            'img' => $this->string(200)->defaultValue('images/default_book.png')
         ]);
 
         Yii::$app->db->createCommand()->batchInsert('{{%book}}', ['title','author_id','releasedate','img'], [

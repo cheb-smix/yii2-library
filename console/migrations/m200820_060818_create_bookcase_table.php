@@ -14,7 +14,7 @@ class m200820_060818_create_bookcase_table extends Migration
     {
         $this->createTable('{{%bookcase}}', [
             'id' => $this->primaryKey(),
-            'title' => $this->string(50)->notNull()
+            'title' => $this->string(50)->notNull()->defaultValue('Шкаф')
         ]);
         Yii::$app->db->createCommand()->batchInsert('{{%bookcase}}', ['title'], [
             ['Шкаф А1'],

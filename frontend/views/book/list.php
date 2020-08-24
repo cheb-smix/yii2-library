@@ -7,6 +7,9 @@ $colspan = 5;
 <div class="container">
     <div class="row">
         <div class="col-12">
+            <a href="?r=book/edit&id=0" class="btn btn-success btn-lg">Добавить новую книгу</a>
+        </div>
+        <div class="col-12">
             <table class="table">
             <thead>
                 <tr>

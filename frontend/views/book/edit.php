@@ -4,6 +4,8 @@ $this->title = $book["title"];
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
+if(!$book["img"]) $book["img"] = "images/default_book.png";
+
 $excnt = count($exemplars);
 $script = <<< JS
 let excnt = $excnt ;

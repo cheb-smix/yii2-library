@@ -37,8 +37,8 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Книги', 'url' => ['/booklist']],
-        ['label' => 'Авторы', 'url' => ['/author']],
+        ['label' => 'Книги', 'url' => ['/book/list']],
+        ['label' => 'Авторы', 'url' => ['/author/list']],
         ['label' => 'Студенты', 'url' => ['/student']],
     ];
     if (Yii::$app->user->isGuest) {
