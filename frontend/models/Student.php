@@ -4,6 +4,13 @@ namespace app\models;
 use Yii;
 use yii\db\ActiveRecord;
 
+/**
+ * History model
+ *
+ * @property integer $id
+ * @property string $fio
+ */
+
 class Students extends ActiveRecord
 {
 	public function attributeLabels()

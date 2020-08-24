@@ -19,7 +19,7 @@ $colspan = 5;
             </thead>
             <tbody>
             <?php foreach($booklist as $bc){ ?>
-                <tr class="bg-primary"><th colspan="<?php echo $colspan; ?>"><?php echo $bc["title"]; ?> <button class="btn btn-info btn-sm">Редактировать</button></th></tr>
+                <tr class="bg-primary"><th colspan="<?php echo $colspan; ?>"><?php echo $bc["title"]; ?> <i class="fa fa-edit btn" title="Редактировать"></i></th></tr>
                 <?php foreach($bc["shelfes"] as $shelf){ ?>
                     <?php if(count($shelf["exemplars"])==0) continue; ?>
                     <tr><th colspan="<?php echo $colspan; ?>"><?php echo $shelf["title"]; ?></th></tr>
@@ -30,8 +30,9 @@ $colspan = 5;
                             <td><?php echo $exemplar["book"]["author"]["name"]; ?></td>
                             <td><?php echo $exemplar["book"]["releasedate"]; ?></td>
                             <td>
-                                <button class="btn give btn-success">Выдача</button>
-                                <button class="btn edit btn-info">Правка</button>
+                                <button class="btn give btn-success" title="Выдача"><i class="fa fa-reply"></i></button>
+                                <button class="btn view btn-info" title="Просмотр"><i class="fa fa-eye"></i></button>
+                                <button class="btn edit btn-primary" title="Правка"><i class="fa fa-pencil"></i></button>
                             </td>
                         </tr>
                     <?php } ?>
@@ -43,11 +44,15 @@ $colspan = 5;
         </div>
     </div>
 </div>
-<script>
-document.querySelector(".edit").onclick = function(){
-    location.href = '?r=book/edit';
-}/*
-$(document).delegate(".give","click",function(){
+<?php
+$js = <<< JS
+$(document).delegate(".edit","click",function(){
+    location.href = '?r=book/edit&id='+$(this).closest("tr").attr("data-id");
+}).delegate(".view","click",function(){
+    location.href = '?r=book&id='+$(this).closest("tr").attr("data-id");
+}).delegate(".give","click",function(){
     alert($(this).closest("tr").attr("data-id"));
-});*/
-</script>
+});
+JS;
+$this->registerJs( $js );
+?>
