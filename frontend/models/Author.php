@@ -4,6 +4,15 @@ namespace app\models;
 use Yii;
 use yii\db\ActiveRecord;
 
+/**
+ * Author model
+ *
+ * @property integer $id
+ * @property string $name
+ * @property string $description
+ * @property string $img
+ */
+
 class Author extends ActiveRecord{
 	public function attributeLabels()
 	{
@@ -22,7 +31,7 @@ class Author extends ActiveRecord{
 	}
 	public function getBooks()
 	{
-		return $this->hasMany(Book::className(), ['author_id' => 'id']);
+		return $this->hasMany(Book::className(), ['author_id' => 'id'])->with("exemplars");
 	}
 }
 

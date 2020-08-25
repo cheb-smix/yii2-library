@@ -15,7 +15,7 @@ class m200820_071107_create_shelf_table extends Migration
         $this->createTable('{{%shelf}}', [
             'id' => $this->primaryKey(),
             'bookcase_id' => $this->integer()->notNull(),
-            'title' => $this->string(20)->notNull()
+            'title' => $this->string(20)->notNull()->defaultValue('Полка I')
         ]);
 
         Yii::$app->db->createCommand()->batchInsert('{{%shelf}}', ['bookcase_id','title'], [

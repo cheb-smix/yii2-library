@@ -4,6 +4,14 @@ namespace app\models;
 use Yii;
 use yii\db\ActiveRecord;
 
+/**
+ * Shelf model
+ *
+ * @property integer $id
+ * @property string $title
+ * @property integer $bookcase_id
+ */
+
 class Shelf extends ActiveRecord
 {
 	public function attributeLabels()
@@ -27,7 +35,7 @@ class Shelf extends ActiveRecord
 	}
 	public function getExemplars()
 	{
-		return $this->hasMany(Exemplar::className(), ['shelf_id' => 'id'])->with("book");
+		return $this->hasMany(Exemplar::className(), ['shelf_id' => 'id'])->with("book","onhand");
 	}
 }
 
