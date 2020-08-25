@@ -4,6 +4,13 @@ namespace app\models;
 use Yii;
 use yii\db\ActiveRecord;
 
+/**
+ * Bookcase model
+ *
+ * @property integer $id
+ * @property string $title
+ */
+
 class Bookcase extends ActiveRecord
 {
 	public function attributeLabels()

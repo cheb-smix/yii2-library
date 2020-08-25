@@ -2,9 +2,19 @@
 namespace app\models;
 
 use Yii;
-use Yii\db\ActiveRecord;
+use yii\db\ActiveRecord;
 
-class Bookcase extends ActiveRecord{
+/**
+ * History model
+ *
+ * @property integer $id
+ * @property integer $exemplar_id
+ * @property integer $student_id
+ * @property string $date_taken
+ * @property string $date_returned
+ */
+
+class History extends ActiveRecord{
 	public function attributeLabels(){
 		return [
             'exemplar_id'=>'Экземпляр книги',
@@ -14,7 +24,10 @@ class Bookcase extends ActiveRecord{
 		];
 	}
 	public function rules(){
-		return [];
+		return [
+			[ ['exemplar_id','student_id','date_taken'], 'required' ],
+            [ ['student_id'], 'number', 'min'=>1, 'message'=>'Выберите студента' ],
+		];
 	}
 	public function getStudent()
 	{
@@ -22,6 +35,6 @@ class Bookcase extends ActiveRecord{
 	}
 	public function getExemplar()
 	{
-		return $this->hasOne(Exemplar::className(), ['id' => 'exemplar_id'])->getBook();
+		return $this->hasOne(Exemplar::className(), ['id' => 'exemplar_id'])->with("book");
 	}
 }

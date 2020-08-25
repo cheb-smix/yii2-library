@@ -14,7 +14,7 @@ class m200823_081647_create_history_table extends Migration
     {
         $this->createTable('{{%history}}', [
             'id' => $this->primaryKey(),
-            'exemplar_id' => $this->integer()->notNull(),
+            'exemplar_id' => $this->integer(),
             'student_id' => $this->integer()->notNull(),
             'date_taken' => $this->date()->notNull(),
             'date_returned' => $this->date()
@@ -36,8 +36,7 @@ class m200823_081647_create_history_table extends Migration
             'history',
             'exemplar_id',
             'exemplar',
-            'id',
-            'NO ACTION'
+            'id'
         );
 
         $this->createIndex(
@@ -51,8 +50,7 @@ class m200823_081647_create_history_table extends Migration
             'history',
             'student_id',
             'student',
-            'id',
-            'NO ACTION'
+            'id'
         );
     }
 

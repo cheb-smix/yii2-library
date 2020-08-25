@@ -14,7 +14,7 @@ class m200822_142703_create_exemplar_table extends Migration
     {
         $this->createTable('{{%exemplar}}', [
             'id' => $this->primaryKey(),
-            'book_id' => $this->integer()->notNull(),
+            'book_id' => $this->integer(),
             'shelf_id' => $this->integer(),
         ]);
 
@@ -50,8 +50,7 @@ class m200822_142703_create_exemplar_table extends Migration
             'exemplar',
             'book_id',
             'book',
-            'id',
-            'CASCADE'
+            'id'
         );
 
         $this->createIndex(
@@ -65,8 +64,7 @@ class m200822_142703_create_exemplar_table extends Migration
             'exemplar',
             'shelf_id',
             'shelf',
-            'id',
-            'SET NULL'
+            'id'
         );
     }
 

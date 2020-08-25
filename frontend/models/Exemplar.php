@@ -4,27 +4,33 @@ namespace app\models;
 use Yii;
 use yii\db\ActiveRecord;
 
+/**
+ * Exemplar model
+ *
+ * @property integer $id
+ * @property integer $book_id
+ * @property integer $shelf_id
+ */
+
 class Exemplar extends ActiveRecord
 {
-	/*public function attributeLabels()
+	public function attributeLabels()
 	{
 		return [
-			'title'=>'Название книги',
-			'releasedate'=>'Дата выхода',
-			'author_id'=>'Автор',
-			'count'=>'Количество',
-			'shelf_id'=>'Полка',
-			'img'=>'Обложка'
+			'id'=>'Экземпляр',
+			'book_id'=>'ID книги',
+			'shelf_id'=>'ID полки',
 		];
 	}
 	public function rules()
 	{
 		return [
-			[ ['title','releasedate'], 'required' ],
-			[ ['title'], 'string', 'length'=>[5,100], 'message'=>'Wrong' ],
-			[ ['author_id','shelf_id'], 'number', 'min'=>1, 'message'=>'Выберите автора' ],
+			[ ['book_id','shelf_id'], 'required' ],
 		];
-    }*/
+	}
+	public function getOnhand(){
+		return $this->hasOne(History::className(), ['exemplar_id' => 'id'])->where(['date_returned' => NULL]);
+	}
 	public function getBook()
 	{
 		return $this->hasOne(Book::className(), ['id' => 'book_id'])->with("author");

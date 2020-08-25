@@ -37,12 +37,12 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Книги', 'url' => ['/booklist']],
-        ['label' => 'Авторы', 'url' => ['/author']],
+        ['label' => 'Книги', 'url' => ['/book/list']],
+        ['label' => 'Авторы', 'url' => ['/author/list']],
         ['label' => 'Студенты', 'url' => ['/student']],
+        ['label' => 'История', 'url' => ['/history/list']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Регистрация', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => 'Вход', 'url' => ['/site/login']];
     } else {
         $menuItems[] = '<li>'
