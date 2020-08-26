@@ -14,6 +14,7 @@ use yii\db\ActiveRecord;
 
 class Student extends ActiveRecord
 {
+
 	public function attributeLabels()
 	{
 		return [
@@ -21,6 +22,7 @@ class Student extends ActiveRecord
 			'img'=>'Фотография',
 		];
 	}
+
 	public function rules()
 	{
 		return [
@@ -28,9 +30,11 @@ class Student extends ActiveRecord
 			[ ['fio'], 'string', 'length'=>[5,100], 'message'=>'Wrong' ],
 		];
 	}
+
 	public function getHistory()
 	{
 		return $this->hasMany(History::className(), ['student_id' => 'id'])->with("exemplar");
 	}
+	
 }
 

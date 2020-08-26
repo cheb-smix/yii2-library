@@ -13,7 +13,9 @@ use yii\db\ActiveRecord;
  * @property string $img
  */
 
-class Author extends ActiveRecord{
+class Author extends ActiveRecord
+{
+	
 	public function attributeLabels()
 	{
 		return [
@@ -22,6 +24,7 @@ class Author extends ActiveRecord{
 			'img'=>'Фотография'
 		];
 	}
+
 	public function rules()
 	{
 		return [
@@ -29,9 +32,11 @@ class Author extends ActiveRecord{
 			[ ['name'], 'string', 'length'=>[5,100], 'message'=>'Wrong' ],
 		];
 	}
+
 	public function getBooks()
 	{
 		return $this->hasMany(Book::className(), ['author_id' => 'id'])->with("exemplars");
 	}
+
 }
 

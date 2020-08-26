@@ -21,21 +21,23 @@ $colspan = 5;
                 </tr>
             </thead>
             <tbody>
-            <?php foreach($booklist as $bc){ ?>
+            <?php foreach ($booklist as $bc) { ?>
                 <tr class="bg-primary"><th colspan="<?php echo $colspan; ?>"><?php echo $bc["title"]; ?> <i class="fa fa-edit btn" title="Редактировать"></i></th></tr>
-                <?php foreach($bc["shelfes"] as $shelf){ ?>
+
+                <?php foreach ($bc["shelfes"] as $shelf) { ?>
                     <?php if(count($shelf["exemplars"])==0) continue; ?>
                     <tr><th colspan="<?php echo $colspan; ?>"><?php echo $shelf["title"]; ?></th></tr>
-                    <?php foreach($shelf["exemplars"] as $exemplar){ ?>
+
+                    <?php foreach ($shelf["exemplars"] as $exemplar) { ?>
                         <tr data-id="<?php echo $exemplar["book"]["id"]; ?>">
                             <td><img src="<?php echo $exemplar["book"]["img"]; ?>" alt="<?php echo $exemplar["book"]["title"]; ?>" width=30></td>
                             <td><?php echo $exemplar["book"]["title"]; ?></td>
                             <td><?php echo $exemplar["book"]["author"]["name"]; ?></td>
                             <td><?php echo $exemplar["book"]["releasedate"]; ?></td>
                             <td>
-                            <?php if(!$exemplar["onhand"]){ ?>
+                            <?php if (!$exemplar["onhand"]) { ?>
                                 <a href="?r=history/add&exemplar_id=<?php echo $exemplar["id"]; ?>" title="Выдача" class="btn view btn-success"><i class="fa fa-reply"></i></a>
-                            <?php }else{ ?>
+                            <?php } else { ?>
                                 <a href="?r=history/add&exemplar_id=<?php echo $exemplar["id"]; ?>" title="Экземпляр на руках" class="btn view btn-success" disabled><i class="fa fa-reply"></i></a>
                             <?php } ?>
                                 <a href="?r=book&id=<?php echo $exemplar["book"]["id"]; ?>" title="Просмотр" class="btn view btn-info"><i class="fa fa-eye"></i></a>
@@ -43,9 +45,12 @@ $colspan = 5;
                             </td>
                         </tr>
                     <?php } ?>
+
                 <?php } ?>
+
                 <tr><td></td></tr>
             <?php } ?>
+
             </tbody>
             </table>
         </div>

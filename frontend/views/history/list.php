@@ -19,7 +19,7 @@ $colspan = 6;
                 </tr>
             </thead>
             <tbody>
-            <?php foreach($history as $h){ ?>
+            <?php foreach ($history as $h) { ?>
                 <tr>
                     <td><img src="<?php echo $h["student"]["img"]; ?>" alt="<?php echo $h["student"]["fio"]; ?>" width=30><img src="<?php echo $h["exemplar"]["book"]["img"]; ?>" alt="<?php echo $h["exemplar"]["book"]["title"]; ?>" width=30></td>
                     <td><a href="?r=student&id=<?php echo $h["student"]["id"]; ?>"><?php echo $h["student"]["fio"]; ?></a></td>
@@ -27,9 +27,9 @@ $colspan = 6;
                     <td><?php echo $h["date_taken"]; ?></td>
                     <td><?php echo $h["date_returned"]; ?></td>
                     <td>
-                        <?php if($h["date_returned"]){ ?>
+                        <?php if ($h["date_returned"]) { ?>
                             <a href="?r=history/return&id=<?php echo $h["id"]; ?>" class="btn view btn-primary" title="Экземпляр возвращён" disabled><i class="fa fa-reply"></i></a>
-                        <?php }else{ ?>
+                        <?php } else { ?>
                             <a href="?r=history/return&id=<?php echo $h["id"]; ?>" class="btn view btn-primary" title="Вернуть"><i class="fa fa-reply"></i></a>
                         <?php } ?>
                     </td>

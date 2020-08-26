@@ -21,7 +21,7 @@ $colspan = 5;
                 </tr>
             </thead>
             <tbody>
-            <?php foreach($authors as $author){ ?>
+            <?php foreach ($authors as $author) { ?>
                 <tr data-id="<?php echo $author["id"]; ?>">
                     <td><img src="<?php echo $author["img"]; ?>" alt="<?php echo $author["name"]; ?>" width=30></td>
                     <td><?php echo $author["name"]; ?></td>

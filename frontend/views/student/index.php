@@ -2,7 +2,7 @@
 
 $this->title = $student["fio"];
 $ttl_onhand = 0;
-foreach($student["history"] as $history) if(!$history["date_returned"]) $ttl_onhand++;
+foreach ($student["history"] as $history) if (!$history["date_returned"]) $ttl_onhand++;
 ?>
 <div class="container">
     <div class="row">
@@ -16,13 +16,13 @@ foreach($student["history"] as $history) if(!$history["date_returned"]) $ttl_onh
                 <tr><td>Записей в истории</td><td><?php echo count($student["history"]); ?></td></tr>
                 <tr><td>Книг на руках</td><td><?php echo $ttl_onhand; ?></td></tr>
             </table>
-            <?php if($ttl_onhand){ ?>
+            <?php if ($ttl_onhand) { ?>
             <br>
             <h3>Книги на руках</h3>
             <table class="table">
             <tr><th></th><th>Наименование</th><th>Автор</th><th>Дата выдачи</th><th>Действия</th></tr>
-            <?php foreach($student["history"] as $history){ ?>
-                <?php if($history["date_returned"]) continue; ?>
+            <?php foreach ($student["history"] as $history) { ?>
+                <?php if ($history["date_returned"]) continue; ?>
                 <tr>
                     <td><img src="<?php echo $history["exemplar"]["book"]["img"]; ?>" alt="<?php echo $history["exemplar"]["book"]["title"]; ?>" width=30></td>
                     <td><a href="?r=book&id=<?php echo $history["exemplar"]["book"]["id"]; ?>"><?php echo $history["exemplar"]["book"]["title"]; ?></a></td>
@@ -34,12 +34,13 @@ foreach($student["history"] as $history) if(!$history["date_returned"]) $ttl_onh
             </table>
             <br>
             <?php } ?>
-            <?php if(count($student["history"]) > $ttl_onhand){ ?>
+
+            <?php if (count($student["history"]) > $ttl_onhand) { ?>
             <h3>История</h3>
             <table class="table">
             <tr><th></th><th>Наименование</th><th>Автор</th><th>Дата выдачи</th><th>Дата возврата</th></tr>
-            <?php foreach($student["history"] as $history){ ?>
-                <?php if(!$history["date_returned"]) continue; ?>
+            <?php foreach ($student["history"] as $history) { ?>
+                <?php if (!$history["date_returned"]) continue; ?>
                 <tr>
                     <td><img src="<?php echo $history["exemplar"]["book"]["img"]; ?>" alt="<?php echo $history["exemplar"]["book"]["title"]; ?>" width=30></td>
                     <td><a href="?r=book&id=<?php echo $history["exemplar"]["book"]["id"]; ?>"><?php echo $history["exemplar"]["book"]["title"]; ?></a></td>

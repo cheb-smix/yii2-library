@@ -18,10 +18,10 @@ $this->title = $author["name"];
             <h4><strong>Книги в базе</strong></h4>
             <table class="table">
             <tr><th>Наименование</th><th>Количество экземпляров</th><th>Из них на руках</th></tr>
-            <?php foreach($author["books"] as $book){ ?>
+            <?php foreach ($author["books"] as $book) { ?>
                 <?
                 $onhand = 0;
-                foreach($book["exemplars"] as $ex) if($ex["onhand"]) $onhand++;
+                foreach ($book["exemplars"] as $ex) if($ex["onhand"]) $onhand++;
                 ?>
                 <tr><td><a href="?r=book&id=<?php echo $book["id"]; ?>"><?php echo $book["title"]; ?></a></td><td><?php echo count($book["exemplars"]); ?></td><td><?php echo $onhand; ?></td></tr>
             <?php } ?>

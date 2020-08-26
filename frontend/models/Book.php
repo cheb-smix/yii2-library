@@ -16,6 +16,7 @@ use yii\db\ActiveRecord;
 
 class Book extends ActiveRecord
 {
+
 	public function attributeLabels()
 	{
 		return [
@@ -25,6 +26,7 @@ class Book extends ActiveRecord
 			'img'=>'Обложка',
 		];
 	}
+
 	public function rules()
 	{
 		return [
@@ -38,8 +40,10 @@ class Book extends ActiveRecord
 	{
 		return $this->hasOne(Author::className(), ['id' => 'author_id']);
 	}
+
 	public function getExemplars()
 	{
 		return $this->hasMany(Exemplar::className(), ['book_id' => 'id'])->with("shelf","onhand");
 	}
+	
 }

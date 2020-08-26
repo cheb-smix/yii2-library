@@ -4,7 +4,7 @@ $this->title = $student["fio"];
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-if(!$student["img"]) $student["img"] = "images/default_user.png";
+if (!$student["img"]) $student["img"] = "images/default_user.png";
 ?>
 <div class="col-md-3">
     <img src="<?php echo $student["img"]; ?>" alt="<?php echo $student["fio"]; ?>" style="width:100%" >

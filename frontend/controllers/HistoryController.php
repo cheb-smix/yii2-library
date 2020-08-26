@@ -10,7 +10,8 @@ use app\models\Student;
 
 class HistoryController extends Controller
 {
-    public function actionList(){
+    public function actionList()
+    {
         $history = History::find()
         ->with('student','exemplar')
         ->orderBy('date_taken DESC')
@@ -18,19 +19,20 @@ class HistoryController extends Controller
         return $this->render('list', compact('history'));
     }
 
-    public function actionAdd($exemplar_id){
-        if(!$exemplar_id){
+    public function actionAdd($exemplar_id)
+    {
+        if (!$exemplar_id) {
             Yii::$app->session->setFlash('error','Экземпляр не указан');
             return $this->redirect(['history/list']);
         }
         $history = new History();
         $history->date_taken = date("Y-m-d");
 
-        if($history->load(\Yii::$app->request->post(), 'History') && $history->validate()){
-            if($history->save()){
+        if ($history->load(\Yii::$app->request->post(), 'History') && $history->validate()) {
+            if ($history->save()) {
                 Yii::$app->session->setFlash('success','Данные приняты');
                 return $this->redirect(['history/list']);
-            }else{
+            } else {
                 Yii::$app->session->setFlash('error','Ошибка');
             }
         }
@@ -39,7 +41,7 @@ class HistoryController extends Controller
         ->where(["id" => $exemplar_id])
         ->with("book","onhand")
         ->one();
-        if($exemplar["onhand"]){
+        if ($exemplar["onhand"]) {
             Yii::$app->session->setFlash('error','Экземпляр уже на руках');
             return $this->redirect(['history/list']);
         }
@@ -49,20 +51,21 @@ class HistoryController extends Controller
         return $this->render('add', compact('history','exemplar','students'));
     }
 
-    public function actionReturn($id=0){
-        if($id){
+    public function actionReturn($id=0)
+    {
+        if ($id) {
             $history = History::find()
             ->where(['id' => $id])
             ->one();
-        }else{
+        } else {
             return $this->redirect(['history/list']);
         }
 
         $history->date_returned = date("Y-m-d");
         
-        if($history->save()){
+        if ($history->save()) {
             Yii::$app->session->setFlash('success','Данные приняты');
-        }else{
+        } else {
             Yii::$app->session->setFlash('error','Ошибка');
         }
         return $this->redirect(['history/list']);

@@ -4,7 +4,7 @@ $this->title = $author["name"];
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-if(!$author["img"]) $author["img"] = "images/default_user.png";
+if (!$author["img"]) $author["img"] = "images/default_user.png";
 ?>
 <div class="col-md-3">
     <img src="<?php echo $author["img"]; ?>" alt="<?php echo $author["name"]; ?>" style="width:100%" >

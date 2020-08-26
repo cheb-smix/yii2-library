@@ -5,7 +5,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\jui\DatePicker;
 
-if(!$exemplar["book"]["img"]) $exemplar["book"]["img"] = "images/default_book.png";
+if (!$exemplar["book"]["img"]) $exemplar["book"]["img"] = "images/default_book.png";
 
 ?>
 <div class="col-md-3">

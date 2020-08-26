@@ -14,8 +14,11 @@ use yii\db\ActiveRecord;
  * @property string $date_returned
  */
 
-class History extends ActiveRecord{
-	public function attributeLabels(){
+class History extends ActiveRecord
+{
+
+	public function attributeLabels()
+	{
 		return [
             'exemplar_id'=>'Экземпляр книги',
             'student_id'=>'Студент',
@@ -23,18 +26,23 @@ class History extends ActiveRecord{
             'date_returned'=>'Дата возврата'
 		];
 	}
-	public function rules(){
+
+	public function rules()
+	{
 		return [
 			[ ['exemplar_id','student_id','date_taken'], 'required' ],
             [ ['student_id'], 'number', 'min'=>1, 'message'=>'Выберите студента' ],
 		];
 	}
+
 	public function getStudent()
 	{
 		return $this->hasOne(Student::className(), ['id' => 'student_id']);
 	}
+
 	public function getExemplar()
 	{
 		return $this->hasOne(Exemplar::className(), ['id' => 'exemplar_id'])->with("book");
 	}
+	
 }

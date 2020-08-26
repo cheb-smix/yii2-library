@@ -19,7 +19,7 @@ $colspan = 3;
                 </tr>
             </thead>
             <tbody>
-            <?php foreach($students as $student){ ?>
+            <?php foreach ($students as $student) { ?>
                 <tr data-id="<?php echo $student["id"]; ?>">
                     <td><img src="<?php echo $student["img"]; ?>" alt="<?php echo $student["fio"]; ?>" width=30></td>
                     <td><?php echo $student["fio"]; ?></td>

@@ -44,7 +44,7 @@ $this->registerJs( $script );
     
     <?php $form = ActiveForm::begin() ?>
         <div class="row exemplars">
-        <? foreach($exemplars as $index => $exemplar){ ?>
+        <? foreach ($exemplars as $index => $exemplar) { ?>
             <div class="col-md-6">
             <?= $form->field($exemplar, "[$index]id")->hiddenInput()->label('Экземпляр '.($index+1)) ?>
             <?= $form->field($exemplar, "[$index]book_id")->hiddenInput()->label(false) ?>
@@ -55,9 +55,9 @@ $this->registerJs( $script );
             ])->label(false); ?>
 
                 <span class="input-group-btn">
-                <?php if(!$exemplar["onhand"]){ ?>
+                <?php if (!$exemplar["onhand"]) { ?>
                     <?= Html::button("<i class='fa fa-trash'></i>", ['class' => 'btn btn-danger', 'data-index'=>$index, 'title' => 'Удалить']) ?>
-                <?php }else{ ?>
+                <?php } else { ?>
                     <?= Html::button("<i class='fa fa-trash'></i>", ['class' => 'btn btn-danger', 'data-index' => $index, 'disabled' => true, 'title' => 'Экземпляр на руках. Удаление не возможно!']) ?>
                 <?php } ?>
                 </span>

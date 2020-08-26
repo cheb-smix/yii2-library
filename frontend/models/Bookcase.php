@@ -19,6 +19,7 @@ class Bookcase extends ActiveRecord
 			'title'=>'Название/идентификатор шкафа'
 		];
 	}
+
 	public function rules()
 	{
 		return [
@@ -26,8 +27,10 @@ class Bookcase extends ActiveRecord
 			[ 'title', 'string', 'length'=>[2,100], 'message'=>'Wrong' ],
 		];
 	}
+
 	public function getShelfes()
 	{
 		return $this->hasMany(Shelf::className(), ['bookcase_id' => 'id'])->with("exemplars");
 	}
+	
 }

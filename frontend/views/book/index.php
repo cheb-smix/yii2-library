@@ -6,8 +6,8 @@ use app\models\Student;
 $this->title = $book["title"];
 $ttl_onhand = 0;
 $students = [];
-foreach($book["exemplars"] as $ex){
-    if($ex["onhand"]){
+foreach ($book["exemplars"] as $ex) {
+    if ($ex["onhand"]) {
         $students[$ex["onhand"]["student_id"]] = Student::findOne($ex["onhand"]["student_id"]);
         $ttl_onhand++;
     }
@@ -27,12 +27,12 @@ foreach($book["exemplars"] as $ex){
                 <tr><td>Экземпляров на руках</td><td><?php echo $ttl_onhand; ?></td></tr>
             </table>
             <br>
-            <?php if($ttl_onhand){ ?>
+            <?php if ($ttl_onhand) { ?>
             <h3>Экземпляры на руках</h3>
                 <table class="table">
                 <tr><th></th><th>Студент</th><th>Действия</th></tr>
-                <?php foreach($book["exemplars"] as $ex){ ?>
-                    <?php if(!$ex["onhand"]) continue; ?>
+                <?php foreach ($book["exemplars"] as $ex) { ?>
+                    <?php if (!$ex["onhand"]) continue; ?>
                     <tr>
                     <td><img src="<?php echo $students[$ex["onhand"]["student_id"]]["img"]; ?>" alt="<?php echo $students[$ex["onhand"]["student_id"]]["fio"]; ?>" style="width: 40px" ></td>
                     <td><?php echo $students[$ex["onhand"]["student_id"]]["fio"]; ?></td>

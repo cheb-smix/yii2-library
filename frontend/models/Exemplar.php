@@ -14,6 +14,7 @@ use yii\db\ActiveRecord;
 
 class Exemplar extends ActiveRecord
 {
+
 	public function attributeLabels()
 	{
 		return [
@@ -22,21 +23,26 @@ class Exemplar extends ActiveRecord
 			'shelf_id'=>'ID полки',
 		];
 	}
+
 	public function rules()
 	{
 		return [
 			[ ['book_id','shelf_id'], 'required' ],
 		];
 	}
+
 	public function getOnhand(){
 		return $this->hasOne(History::className(), ['exemplar_id' => 'id'])->where(['date_returned' => NULL]);
 	}
+
 	public function getBook()
 	{
 		return $this->hasOne(Book::className(), ['id' => 'book_id'])->with("author");
-    }
+	}
+	
     public function getShelf()
 	{
 		return $this->hasOne(Shelf::className(), ['id' => 'shelf_id']);
 	}
+	
 }
